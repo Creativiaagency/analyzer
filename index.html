@@ -71,7 +71,7 @@ body{margin:0;background:#0b1018;color:var(--text)}
 
 <script>
 const $ = id => document.getElementById(id);
-let imgURL = '', analyzed = false, output = '';
+let imgURL = '', analyzed = false, output = '', improveUsed = false;
 
 $('file').addEventListener('change', e => {
   const f = e.target.files[0];
@@ -127,6 +127,8 @@ function analyze(img){
 }
 
 $('improveBtn').onclick = async () => {
+  if (improveUsed) { alert('Solo se permite una versión mejorada por sesión.'); return; }
+  improveUsed = true;
 
   $('loader').style.display='block';
   $('err').textContent='';
