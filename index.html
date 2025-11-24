@@ -82,20 +82,41 @@ $('file').addEventListener('change', e => {
   reader.readAsDataURL(f);
 });
 
+// SCORE FALSO CREÍBLE
 $('analyzeBtn').onclick = () => {
-  $('score').textContent = 65;
-  $('improve').textContent = "22%";
-  $('coh').textContent = "Media";
-  $('rec').textContent = "Mejorá la iluminación y contraste";
+
+  // Score de impacto 40–60
+  const base = Math.floor(Math.random() * 20) + 40;
+  $('score').textContent = base;
+
+  // Mejora potencial 40–60%
+  const improvePct = Math.floor((100 - base) * (Math.random() * 0.5 + 0.4));
+  $('improve').textContent = improvePct + "%";
+
+  // Coherencia
+  $('coh').textContent = base > 50 ? "Media" : "Baja";
+
+  // Recomendaciones
+  const recomendaciones = [
+    "Mejorá la iluminación y calidez",
+    "Agregá una figura humana para mayor conexión",
+    "Aumentá contraste y foco en el producto",
+    "Buscá un ambiente más coherente con la marca",
+    "Mejorá la composición y jerarquía visual"
+  ];
+  $('rec').textContent = recomendaciones[Math.floor(Math.random() * recomendaciones.length)];
+
   $('improveBtn').disabled = false;
 };
 
+// GENERAR VERSIÓN MEJORADA
 $('improveBtn').onclick = async () => {
 
   if (improveUsed) {
     alert("Una sola mejora por sesión.");
     return;
   }
+
   improveUsed = true;
   $('improveBtn').disabled = true;
 
