@@ -91,8 +91,13 @@ $('analyzeBtn').onclick = () => {
 };
 
 $('improveBtn').onclick = async () => {
-  if (improveUsed) return alert("Una sola mejora por sesión.");
+
+  if (improveUsed) {
+    alert("Una sola mejora por sesión.");
+    return;
+  }
   improveUsed = true;
+  $('improveBtn').disabled = true;
 
   $('loader').style.display = 'block';
   $('err').textContent = '';
@@ -120,21 +125,25 @@ $('improveBtn').onclick = async () => {
 };
 
 const promptFinal = `Objetivo: mostrar un cambio importante manteniendo logo, producto y textos originales.
-Fotografía comercial premium, iluminación cinematográfica y balance de color natural.
-Texturas realistas, reflejos sutiles, composición limpia y aspiracional.
-No inventes textos nuevos; podés mejorar jerarquía sin cambiar contenido.
-Colocación natural del producto; no deformarlo. Logo visible.
+Fotografía comercial premium con iluminación cinematográfica cálida.
+Texturas realistas, reflejos sutiles y acabado editorial de alto nivel.
+Podés agregar figuras humanas integradas de manera natural, con expresiones reales y estilo lifestyle cálido.
+Escena coherente y natural en un ambiente cotidiano (hogar/café) con profundidad de campo.
+El producto debe ser el protagonista del anuncio (hero shot), con presencia dominante en la composición.
+Utilizar composición publicitaria siguiendo la regla de tercios.
+No inventes textos nuevos; respetá exactamente los textos originales sin modificar ninguna letra.
+Colocación natural del producto; sin deformarlo. Logo visible y fiel al original.
 CTA no tapa producto ni rostro.
-Evitar fondos planos, elementos irreales o tipografía distorsionada.
-Resultado: imagen coherente, atractiva y lista para anuncio de marca.
+Evitar fondos planos, elementos irreales o artefactos visuales.
+Resultado: imagen atractiva, aspiracional, emocional y lista para campaña.
 Formato vertical 2:3 (1024×1536).`;
 
-$('download').onclick(()=>{
+$('download').onclick = () => {
   const a=document.createElement('a');
   a.href=output;
   a.download='creativia_mejorado.png';
   a.click();
-});
+};
 </script>
 
 </body>
